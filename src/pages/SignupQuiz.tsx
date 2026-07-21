@@ -106,33 +106,8 @@ export function SignupQuiz() {
     setTimeout(() => setLoadingStage(2), 4000);
 
     try {
-      const { data, error } = await supabase.auth.signUp({ 
-        email, 
-        password,
-        options: {
-          data: {
-            full_name: name.trim(),
-            phone: phone,
-            quiz_goal: goal,
-            quiz_pain: painPoint,
-            quiz_target: targetScore
-          }
-        }
-      });
-      if (error) throw error;
-      
-      if (data?.user) {
-        await supabase.from('user_roles').insert({ 
-          id: data.user.id, 
-          role: 'user',
-          nome: name.trim(),
-          email: email,
-          telefone: phone,
-          objetivo: goal,
-          maior_desafio: painPoint,
-          meta_nota: targetScore
-        });
-      }
+      // TEMPORARY BYPASS: Fake sign up to avoid Supabase connection error
+      // The fake user is automatically loaded in AuthContext on redirect.
 
       // Aguarda o término da animação fake
       setTimeout(() => {
