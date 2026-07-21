@@ -85,26 +85,22 @@ export function Login() {
     setError(null);
 
     try {
-      // TEMPORARY BYPASS
-      if (email === 'usuario1@gmail.com' && password === '12345678') {
-        localStorage.setItem('temp_auth', 'true');
-        // Usar window.location para forçar recarregamento do AuthContext
-        window.location.href = '/dashboard';
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) {
+        setError(error.message);
         return;
       }
 
-      const { error } = await supabase.auth.signInWithPassword({ email, password });
-      if (error) {
-        if (error.message.includes('Invalid login credentials')) {
-          throw new Error('E-mail ou senha incorretos.');
-        }
-        throw error;
+      if (data?.user) {
+        // Redirecionamento baseado na role é tratado pelo App.tsx (useEffect do AuthContext)
+        navigate('/dashboard/nova-redacao');
       }
-
-      // O ProtectedRoute ou DashboardLayout se encarregará de buscar o role
-      navigate('/dashboard');
     } catch (err: any) {
-      setError(err.message || 'Ocorreu um erro durante a autenticação.');
+      setError(err.message || 'Erro ao fazer login.');
     } finally {
       setLoading(false);
     }

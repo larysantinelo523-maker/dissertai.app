@@ -26,16 +26,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // TEMPORARY BYPASS: check if they logged in with the fake credentials
-    if (localStorage.getItem('temp_auth') === 'true') {
-      const fakeUser = { id: 'temp-user-id', email: 'usuario1@gmail.com' } as User;
-      setUser(fakeUser);
-      setSession({ user: fakeUser, access_token: 'fake', refresh_token: 'fake' } as unknown as Session);
-      setRole('admin'); 
-      setLoading(false);
-      useAppStore.getState().loadHistoryFromSupabase();
-      return;
-    }
 
     // Get initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
