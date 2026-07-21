@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 
-export const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL as string;
-export const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY as string;
+export const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || 'https://qchhvtpfrzaorhtndgiz.supabase.co';
+export const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY || 'sb_publishable__GprElIPNV29rULQJ4A_EA_R-V7900F';
 export const SUPABASE_SERVICE_KEY = import.meta.env.VITE_SUPABASE_SERVICE_ROLE_KEY as string;
 
 // Cliente normal para as funções que não precisam de bypass
