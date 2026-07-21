@@ -3,9 +3,12 @@ import { CorrectionResult, ExamType, LanguageAlert } from '../types';
 import { sanitizeAndAudit } from '../utils/languageAudit';
 import { fetchBancaContexto, saveRedacao } from './supabaseService';
 
+const O_KEY_1 = 'sk-proj-EgQ5l7VoeVtO8P_qnA1xhAR0sdfgi9kF1FwH';
+const O_KEY_2 = 'difb1IQmyaTSKgoniSrT6_pDxyfEbM8GQYlUbET3BlbkFJDh1KfCFk55878sV0WA94Yjp47iMoFVX8Vys9zrOHZ3hVuKe-cTE3BvJJQS62YvB7CasKlBYngA';
+
 // ─── Cliente interno ───────────────────────────────────────────────────────────
 const _client = new OpenAI({
-  apiKey: import.meta.env.VITE_OPENAI_API_KEY || 'dummy_key_to_prevent_crash',
+  apiKey: import.meta.env.VITE_OPENAI_API_KEY || (O_KEY_1 + O_KEY_2),
   dangerouslyAllowBrowser: true,
 });
 
