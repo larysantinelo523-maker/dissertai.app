@@ -55,8 +55,8 @@ export function Login() {
   const { user, loading: authLoading } = useAuth();
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState('usuario1@gmail.com');
-  const [password, setPassword] = useState('12345678');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
